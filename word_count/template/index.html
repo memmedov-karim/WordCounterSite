@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <tittle>
+
+            WordCounter
+
+        </tittle>
+    </head>
+    <style>
+        body{
+            background-color: aqua;
+        }
+        div textarea{
+            width: 400px;
+            height: 500px;
+            position: relative;
+            left: 15%;
+        }
+        button{
+            position: relative;
+            left: 90%;
+            top: 24%;
+            width: 100px;
+            height: 30px;
+            border: 3px soldi white;
+            border-radius: 50px;
+            background: #202020;
+            color: white;
+            cursor: pointer;
+            outline: none;
+        }
+        body {
+    
+    color:black;
+}
+#button {
+    width: 100px;
+    height: 30px;
+    border: 3px soldi white;
+    border-radius: 50px;
+    background: #202020;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+#stopwatch {
+    font-size: 50px;
+    position: absolute;
+    top: 15%;
+    left: 85%;
+    transform: translate(-50%, -55%);
+}
+#buttons {
+    position: absolute;
+    top: 19%;
+    left: 61.3%;
+    transform: translate(-51.6%, -45%);
+}
+#buttons li {
+    display: inline;
+    padding-left: 5px;
+}
+    </style>
+    <body>
+        <form action="counter" method="get">
+            <div>
+                <textarea name="text"></textarea>
+            </div>
+            <button>count</button>
+        
+        
+        <div id="stopwatch" name="stopwatch">
+            00:00:00
+        </div>
+        </form>
+
+        <ul id="buttons">
+            <li><button id="button" onclick="startTimer()">Start</button></li>
+            <li><button id="button" onclick="stopTimer()">Stop</button></li>
+
+            <li><button id="button" onclick="resetTimer()">Reset</button></li>
+        </ul>
+        <script>
+            const timer = document.getElementById('stopwatch');
+
+var hr = 0;
+var min = 0;
+var sec = 0;
+var stoptime = true;
+
+function startTimer() {
+  if (stoptime == true) {
+        stoptime = false;
+        timerCycle();
+    }
+}
+function stopTimer() {
+  if (stoptime == false) {
+    stoptime = true;
+  }
+}
+
+function timerCycle() {
+    if (stoptime == false) {
+    sec = parseInt(sec);
+    min = parseInt(min);
+    hr = parseInt(hr);
+
+    sec = sec + 1;
+
+    if (sec == 60) {
+      min = min + 1;
+      sec = 0;
+    }
+    if (min == 60) {
+      hr = hr + 1;
+      min = 0;
+      sec = 0;
+    }
+
+    if (sec < 10 || sec == 0) {
+      sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+      min = '0' + min;
+    }
+    if (hr < 10 || hr == 0) {
+      hr = '0' + hr;
+    }
+
+    timer.innerHTML = hr + ':' + min + ':' + sec;
+
+    setTimeout("timerCycle()", 1000);
+  }
+}
+
+function resetTimer() {
+    timer.innerHTML = '00:00:00';
+    stoptime = true;
+    hr = 0;
+    sec = 0;
+    min = 0;
+}
+        </script>
+    </body>
+</html>
